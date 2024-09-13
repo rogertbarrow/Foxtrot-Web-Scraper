@@ -2,15 +2,19 @@
  
 # FoxtrotAIOpsScraper
 
-FoxtrotOpsScraper is a Python scraper developed to identify and collect data from GlassDoor about open job postings in cybersecurity at the entry level. 
+FoxtrotOpsScraper is a Python scraper developed to identify and collect data from GlassDoor about open job postings in cybersecurity at the entry level. The data collected would reflect relevant information on these positions inclusive of their location, employer information, job requirements, key skills required as well as when the job was posted.
 
-## Installation
+## Set Up and Installation
 
-First install the package [requests](https://pypi.org/project/requests/) to allow the script to send HTTP requests as well as [csv](https://docs.python.org/3/library/csv.html) to write the output data in a csv file.
+To begin, select your choice of platform (e.g. VirtualStudio, Google CoLab, Pycharm etc.) and open a new file. Install the package [requests](https://pypi.org/project/requests/) to allow the script to send HTTP requests, [csv](https://docs.python.org/3/library/csv.html) to write the output data in a csv file as well as [BeautifulSoup](https://pypi.org/project/beautifulsoup4/) to parse the HTML description retrieved from the application programming interface (API).
+
+To assist with the running of the code, we will require an API to interact with the data on the GlassDoor website and retrieve what we require. Navigate to the RapidAPI website and select the appropriate API.
+
 
 ```python
 import requests
 import csv
+from bs4 import BeautifulSoup
 ```
 ## Usage
 
@@ -120,12 +124,8 @@ export_job_data_to_csv(joblist)
 ## Considerations
 
 In our research while creating the web scraper, we would've utilized RapidAPI as a resource for our Application Programming Interface (API) to bypass scraping restrictions.
-As the code relies on the RapidAPI endpoint to successfully scrape for jobs on GlassDoor's website, it was paramount that we checked the API code as well as 
-GlassDoor's terms of service before running the code. Along this same vein, we were very mindful of privacy laws and regulations and avoided collecting or storing any information unless it was necessary and came with appropriate consent.
+As the code relies on the RapidAPI endpoint to successfully scrape for jobs on GlassDoor's website, it was paramount that we checked the API code as well as GlassDoor's terms of service before running the code. Along this same vein, we were very mindful of privacy laws and regulations and avoided collecting or storing any information unless it was necessary and came with appropriate consent.
 Furthermore, in order to mitigate blockages, website denial of services or penalties, we employed a rate limiter to limit the number of requests that the code executes withing a given period of time.
 Throughout the process, checks were implemented to ensure that the scraped data is consistent and accurate. This includes verifying that dates are in the correct format, locations are valid, and job descriptions are not empty. If necessary, the scraped data would then be cleaned to remove noise, inconsistencies, or formatting issues. This might involve tasks like removing HTML tags, correcting typos, or standardizing data formats.
 To mitigate any potential errors, try-except blocks were implemented to catch potential exceptions like network errors, API errors, or parsing issues. This helped to prevent the code from crashing and allows for graceful handling of errors. Any relevant errors would also be logged to track and troubleshoot issues.
 
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
