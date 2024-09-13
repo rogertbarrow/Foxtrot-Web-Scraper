@@ -1,3 +1,5 @@
+![jobsearch](jobsearch.jpeg)
+ 
 # FoxtrotAIOpsScraper
 
 FoxtrotOpsScraper is a Python scraper developed to identify and collect data from GlassDoor about open job postings in cybersecurity at the entry level. 
