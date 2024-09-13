@@ -1,22 +1,47 @@
 ![jobsearch](jobsearch.jpg)
  
-# FoxtrotAIOpsScraper
+# GlassDoor Entry-Level Cybersecurity Job Web Scraper
 
-FoxtrotOpsScraper is a Python scraper developed to identify and collect data from GlassDoor about open job postings in cybersecurity at the entry level. The data collected would reflect relevant information on these positions inclusive of their location, employer information, job requirements, key skills required as well as when the job was posted.
+FoxtrotWebScraper is a Python scraper developed to collect job postings data from the Glassdoor API for Cyber Security jobs and exports the data to a CSV file. The jobs are filtered based on location, country (US), and entry-level seniority. The resulting data includes the job title, employer, location, job description, date posted, remote work type, and a link to the job listing.
 
-## Set Up and Installation
+## Set Up and Prerequisites
 
-To begin, select your choice of platform (e.g. VirtualStudio, Google CoLab, Pycharm etc.) and open a new file. Install the package [requests](https://pypi.org/project/requests/) to allow the script to send HTTP requests, [csv](https://docs.python.org/3/library/csv.html) to write the output data in a csv file as well as [BeautifulSoup](https://pypi.org/project/beautifulsoup4/) to parse the HTML description retrieved from the application programming interface (API).
-
-To assist with the running of the code, we will require an API to interact with the data on the GlassDoor website and retrieve what we require. Navigate to the RapidAPI website and select the appropriate API.
-
+To begin, select your choice of platform (e.g. VirtualStudio, Google CoLab, Pycharm etc.) and open a new file. To run the particular script, you'll need to have the following Python libraries installed: 
+- [requests](https://pypi.org/project/requests/) to allow the script to send HTTP requests,
+- [csv](https://docs.python.org/3/library/csv.html) to write the output data in a csv file
+and
+- [beautifulsoup4](https://pypi.org/project/beautifulsoup4/) to process and clean up HTML content in job descriptions.
 
 ```python
 import requests
 import csv
 from bs4 import BeautifulSoup
 ```
+## API Configuration
+
+The script uses the Glassdoor Jobs Scraper API hosted on RapidAPI. You will need to sign up on RapidAPI and obtain your own API key.
+
+Update the x-rapidapi-key in the script with your API key:
+```python
+headers = {
+   "x-rapidapi-key": "YOUR_RAPIDAPI_KEY",
+   "x-rapidapi-host": "glassdoor-jobs-scraper-api.p.rapidapi.com",
+   "Content-Type": "application/json"
+}
+```
+
 ## Usage
+1. Configure Filters
+The payload allows you to specify job filters such as:
+
+Country: Currently set to "us" (United States).
+Keyword: Currently set to "Cyber Security".
+Seniority Level: Currently set to "entrylevel".
+
+You can modify these filters within the [payload](https://pypi.org/project/payload-api/) dictionary in the script.
+
+2. Run the Script
+Once the script is configured, run the code as shown below:
 
 ```python
 import requests
@@ -121,11 +146,21 @@ export_job_data_to_csv(joblist)
 
 ```
 
-## Considerations
+## Notes and Considerations
 
-In our research while creating the web scraper, we would've utilized RapidAPI as a resource for our Application Programming Interface (API) to bypass scraping restrictions.
-As the code relies on the RapidAPI endpoint to successfully scrape for jobs on GlassDoor's website, it was paramount that we checked the API code as well as GlassDoor's terms of service before running the code. Along this same vein, we were very mindful of privacy laws and regulations and avoided collecting or storing any information unless it was necessary and came with appropriate consent.
-Furthermore, in order to mitigate blockages, website denial of services or penalties, we employed a rate limiter to limit the number of requests that the code executes withing a given period of time.
-Throughout the process, checks were implemented to ensure that the scraped data is consistent and accurate. This includes verifying that dates are in the correct format, locations are valid, and job descriptions are not empty. If necessary, the scraped data would then be cleaned to remove noise, inconsistencies, or formatting issues. This might involve tasks like removing HTML tags, correcting typos, or standardizing data formats.
-To mitigate any potential errors, try-except blocks were implemented to catch potential exceptions like network errors, API errors, or parsing issues. This helped to prevent the code from crashing and allows for graceful handling of errors. Any relevant errors would also be logged to track and troubleshoot issues.
+- Ensure your API key has sufficient credits to make the required number of requests
+- Ensure you're within the API's rate limits to avoid being blocked or facing penalties. If the code is making frequent requests, consider implementing a rate limiter or using a task queue to spread out requests.
+- The script currently fetches a maximum of 20 job listings per run. You can modify the [maxRows] field in the [payload] to increase or decrease this limit.
+- This code relies on a RapidAPI endpoint for scraping Glassdoor jobs. Using scraping tools on websites can be against their terms of service. It's recommended to check Glassdoor's terms before running this code. There might be official APIs available for job searches.
+- Regularly review and update the code to address changes in the API, website structure, or your requirements.
+- Ensure that you're complying with the terms of service of the API provider and any websites you're scraping. Some websites may have restrictions on scraping or require explicit permission. Be mindful of privacy laws and regulations. Avoid collecting or storing personally identifiable information (PII) unless it's necessary and you have appropriate consent.
+- Implement checks to ensure that the scraped data is consistent and accurate. For example, verify that dates are in the correct format, locations are valid, and job descriptions are not empty. If necessary, clean the scraped data to remove noise, inconsistencies, or formatting issues. This might involve tasks like removing HTML tags, correcting typos, or standardizing data formats.
+- Implement try-except blocks to catch potential exceptions like network errors, API errors, or parsing issues. This will help prevent the code from crashing and allow you to handle errors gracefully.
+- If you need to process a large number of jobs, consider using parallel processing or asynchronous programming to improve performance. For large datasets, consider storing the scraped data in a database for efficient querying and analysis.
+
+## Credits
+
+This project was worked on by Mr. Roger Barrow and Mr. Marlon Forde.
+
+
 
