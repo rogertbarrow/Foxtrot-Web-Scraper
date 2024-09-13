@@ -1,4 +1,4 @@
-![jobsearch](jobsearch.jpeg)
+![jobsearch](jobsearch.jpg)
  
 # FoxtrotAIOpsScraper
 
