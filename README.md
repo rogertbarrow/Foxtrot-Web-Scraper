@@ -65,7 +65,7 @@ payload = {
    }
 }
 headers = {
-   "x-rapidapi-key": "014506a59dmsh60addb51d52af2dp155156jsna84340a12ba4",
+   "x-rapidapi-key": "your-api-key-here",
    "x-rapidapi-host": "glassdoor-jobs-scraper-api.p.rapidapi.com",
    "Content-Type": "application/json"
 }
